@@ -1,0 +1,43 @@
+replicaCount: 1
+image:
+  repository: quay.io/kingdonb/commits-to
+  tag: 0.1.6
+  pullPolicy: IfNotPresent
+service:
+  name: node
+  type: ClusterIP
+  externalPort: 8080
+  internalPort: 8080
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/tls-acme: true
+  hosts:
+  - name: commits.nerdland.info
+  - name: kb.commits.nerdland.info
+  tls: true
+  tlsSecret: commits.nerdland.info
+externalDatabase:
+  host: deis-database.deis.svc
+  port: 5432
+  user: iwill
+  password: "********" ## database secret redacted
+  database: commitsto
+
+# commits-to App Environment Settings
+commitstoAppDomain: commits.nerdland.info
+commitstoEnvName: production
+
+# Optional - send emails via Mailgun
+mailgun:
+  key:
+  domain:
+  toAddress:
+  fromAddress:

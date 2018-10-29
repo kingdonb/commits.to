@@ -1,0 +1,4 @@
+Dockerfile
+charts/
+.git/
+.env

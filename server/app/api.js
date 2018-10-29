@@ -19,6 +19,11 @@ app.use('/_s/api/v1', UserApi)
 
 // Utils
 
+// health check
+app.get('/healthz', (req, res) => {
+  res.send('ok');
+});
+
 // calculate and store reliability for each user
 app.get('/cache', (req, resp) => {
   cache()

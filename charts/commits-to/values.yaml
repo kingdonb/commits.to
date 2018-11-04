@@ -10,8 +10,8 @@ service:
   internalPort: 8080
 resources:
   limits:
-    cpu: 100m
-    memory: 256Mi
+    cpu: 250m
+    memory: 512Mi
   requests:
     cpu: 100m
     memory: 256Mi
@@ -22,6 +22,7 @@ ingress:
   hosts:
   - name: commits.nerdland.info
   - name: kb.commits.nerdland.info
+  - name: kate.commits.nerdland.info
   tls: true
   tlsSecret: commits.nerdland.info
 externalDatabase:
@@ -33,7 +34,10 @@ externalDatabase:
 
 # commits-to App Environment Settings
 commitstoAppDomain: commits.nerdland.info
+commitstoEnvironment: production
 commitstoEnvName: production
+commitstoPapertrailHost: logs99.papertrailapp.com
+commitstoPapertrailPort: 65537
 
 # Optional - send emails via Mailgun
 mailgun:

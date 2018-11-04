@@ -34,8 +34,14 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 30
         env:
+        - name: ENVIRONMENT
+          value: "{{ .Values.commitstoEnvironment }}"
         - name: ENV_NAME
           value: "{{ .Values.commitstoEnvName }}"
+        - name: PAPERTRAIL_HOST
+          value: "{{ .Values.commitstoPapertrailHost }}"
+        - name: PAPERTRAIL_PORT
+          value: "{{ .Values.commitstoPapertrailPort }}"
         - name: APP_DOMAIN
           value: "{{ .Values.commitstoAppDomain }}"
         - name: DATABASE_URL

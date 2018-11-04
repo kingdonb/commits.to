@@ -3,26 +3,13 @@ import log from '../../lib/logger'
 import { Promises, Users } from '../models'
 import { parsePromise } from '../../lib/parse/promise'
 
-import data from './data/promises.json' // dreev's promises for initial import
+import data from './data/promises.json' // put this back to resolve undefined reference!
 
 // dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases
 // usernames to disallow: 'www', 'admin',
 
 const USERS = [
-  /* testing */
-  'alice', 'bob', 'carol', 'deb',
-  /* initial co-conspirators */
-  'dreev', 'sergii', 'kim', 'bee', 'braden',
-  /* daily beemail */
-  'byorgey', 'nick', 'josh', 'dehowell', 'caillu',
-  'mbork', 'roy', 'jennyli', 'owen',
-  /* weekly beemail */
-  'samuel', 'cole', 'jessica', 'steven',
-  /* contributors */
-  'chris', 'stephen', 'temujin9', 'jordan',
-  /* invitees */
-  'pierre', 'chelsea', 'forrest',
-  'mike',
+  'kb',
 ]
 
 // utility to populate table with hardcoded promises below

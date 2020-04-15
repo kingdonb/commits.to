@@ -69,6 +69,9 @@ export default sequelize.define('promises', {
   urtext: { // full original path the user typed to create the promise
     type: Sequelize.STRING
   },
+  userId: {
+    type: Sequelize.STRING
+  },
   useragent: {
     type: Sequelize.JSON
   },

@@ -14,6 +14,8 @@ if (DATABASE_URL) {
     port: match[4],
     host: match[3],
     logging: true,
+    native: true,
+    ssl: true,
   })
 
   if (process.env.NODE_ENV !== 'test') { // will hang on mocha exiting

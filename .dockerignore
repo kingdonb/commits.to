@@ -1,3 +1,5 @@
 Dockerfile
 draft.toml
 charts/
+.env
+commits-to-secret.yaml

@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: commits-to
+  labels:
+    app.kubernetes.io/instance: commits-to
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
+  selector:
+    app: commits-to
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: commits-to
+    app.kubernetes.io/name: commits-to
+    app.kubernetes.io/part-of: commits-to
+    app.kubernetes.io/version: v1
+  name: commits-to
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commits-to
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+        config.linkerd.io/trace-collector: oc-collector.tracing:55678
+      labels:
+        app: commits-to
+    spec:
+      containers:
+      - command: ["npm"]
+        args: ["start"]
+        env:
+        - name: NODE_ENV
+          value: development
+        - name: APP_PORT
+          value: '5000'
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: DATABASE_URL
+        - name: ENV_NAME
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: ENV_NAME
+        - name: PAPERTRAIL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: PAPERTRAIL_HOST
+        - name: PAPERTRAIL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: PAPERTRAIL_PORT
+        - name: MAILGUN_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: MAILGUN_DOMAIN
+        - name: MAILGUN_FROM
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: MAILGUN_FROM
+        - name: MAILGUN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: commits-to-secret
+              key: MAILGUN_KEY
+        imagePullPolicy: IfNotPresent
+        image: quay.io/kingdonb/commitsto:426d625a7fbeadd0a2abf8b888697b725d40098e
+        name: commits-to
+        ports:
+        - containerPort: 5000
+          name: http
+        resources:
+          requests:
+            cpu: 100m

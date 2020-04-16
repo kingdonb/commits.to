@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  name: star-default-commits-to
+  namespace: default
+spec:
+  rules:
+  - host: kingdonb.dev
+    http:
+      paths:
+      - backend:
+          serviceName: commits-to
+          servicePort: 5000
+        path: /
+  - host: kpb.kingdonb.dev
+    http:
+      paths:
+      - backend:
+          serviceName: commits-to
+          servicePort: 5000
+        path: /
+  - host: klb.kingdonb.dev
+    http:
+      paths:
+      - backend:
+          serviceName: commits-to
+          servicePort: 5000
+        path: /
+  tls:
+  - hosts:
+    - kpb.kingdonb.dev
+    - klb.kingdonb.dev
+    - kingdonb.dev
+    secretName: default-commits-to-cert-secret

@@ -1,5 +1,6 @@
 .babel.json
 .env
+commits-to-secret.yaml
 .viminfo
 
 .nyc_output/

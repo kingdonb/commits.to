@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  labels:
+    app.kubernetes.io/part-of: commits-to
+  name: default-commits-to-issuer
+  namespace: default
+spec:
+  acme:
+    email: kingdon.b@nd.edu
+    privateKeySecretRef:
+      name: default-commits-to-letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - dns01:
+        digitalocean:
+          tokenSecretRef:
+            key: key
+            name: okteto-dns

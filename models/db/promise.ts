@@ -70,7 +70,7 @@ export default sequelize.define('promises', {
     type: Sequelize.STRING
   },
   userId: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   },
   useragent: {
     type: Sequelize.JSON

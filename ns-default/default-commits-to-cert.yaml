@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  labels:
+    app.kubernetes.io/part-of: commits-to
+  name: default-commits-to-cert
+  namespace: default
+spec:
+  dnsNames:
+  - '*.kingdonb.dev'
+  - 'kingdonb.dev'
+  issuerRef:
+    kind: Issuer
+    name: default-commits-to-issuer
+  secretName: default-commits-to-cert-secret

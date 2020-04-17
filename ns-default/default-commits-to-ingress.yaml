@@ -29,6 +29,13 @@ spec:
           serviceName: commits-to
           servicePort: 5000
         path: /
+  - host: jrc.kingdonb.dev
+    http:
+      paths:
+      - backend:
+          serviceName: commits-to
+          servicePort: 5000
+        path: /
   tls:
   - hosts:
     - kpb.kingdonb.dev

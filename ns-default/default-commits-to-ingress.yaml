@@ -36,9 +36,18 @@ spec:
           serviceName: commits-to
           servicePort: 5000
         path: /
+  - host: aluc.kingdonb.dev
+    http:
+      paths:
+      - backend:
+          serviceName: commits-to
+          servicePort: 5000
+        path: /
   tls:
   - hosts:
     - kpb.kingdonb.dev
     - klb.kingdonb.dev
+    - jrc.kingdonb.dev
+    - aluc.kingdonb.dev
     - kingdonb.dev
     secretName: default-commits-to-cert-secret

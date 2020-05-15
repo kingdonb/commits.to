@@ -13,6 +13,7 @@
     "build:server": "babel ./ --only client,lib,models,server --extensions '.ts,.tsx,.js,.jsx' --out-dir ./build",
     "heroku-postbuild": "npm run build",
     "start": "node ./build/server/app",
+    "debug": "node --inspect-brk=0.0.0.0:9229 ./build/server/app",
     "dev:build:server": "npm run build:server -- --watch",
     "dev:build:client": "webpack --config .webpack/config.js --mode=development --watch",
     "dev:server": "NODE_ENV=development nodemon ./build/server/app",

@@ -1,5 +1,5 @@
 name: commits-to
-image: okteto/node:10
+image: kingdonb/commits-to:dev
 command:
 - bash
 workdir: /usr/src/app
@@ -15,5 +15,6 @@ environment:
  #- MAILGUN_KEY=123456789123456789
 forward:
   - 5000:5000
+  - 9229:9229
 secrets:
  #- ./.env:/usr/src/app/.env:400

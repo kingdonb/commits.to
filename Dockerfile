@@ -10,6 +10,7 @@ RUN npm install
 #################################
 
 FROM base AS dev
+RUN npm install -g nodemon
 
 #################################
 

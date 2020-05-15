@@ -1,4 +1,4 @@
-FROM node:10.12
+FROM node:10.12 as base
 ENV PORT 5000
 EXPOSE 5000
 
@@ -6,6 +6,15 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
+
+#################################
+
+FROM base AS dev
+
+#################################
+
+FROM base AS prod
+
 COPY . .
 # RUN npm run dev:build:server
 # RUN npm run dev:build:client

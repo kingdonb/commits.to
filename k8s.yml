@@ -39,6 +39,20 @@ spec:
       containers:
       - command: ["npm"]
         args: ["start"]
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - localhost:5000/api/v1/user/promises?username=kb
+          initialDelaySeconds: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - curl
+            - localhost:5000/api/v1/user/promises?username=kb
+          initialDelaySeconds: 1
+          timeoutSeconds: 5
         env:
         - name: NODE_ENV
           value: development
@@ -80,7 +94,7 @@ spec:
               name: commits-to-secret
               key: MAILGUN_KEY
         imagePullPolicy: IfNotPresent
-        image: quay.io/kingdonb/commitsto:master-73ade8a
+        image: kingdonb/commits-to:20200515
         name: commits-to
         ports:
         - containerPort: 5000

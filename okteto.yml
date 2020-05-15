@@ -1,5 +1,5 @@
 name: commits-to
-image: okteto/node:10
+image: kingdonb/commits-to:dev
 command:
 - bash
 workdir: /usr/src/app

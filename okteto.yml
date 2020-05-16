@@ -3,6 +3,8 @@ image: kingdonb/commits-to:dev
 command:
 - bash
 workdir: /usr/src/app
+persistentVolume:
+  enabled: true
 environment:
   - APP_PORT=5000
   - NODE_ENV=development
@@ -16,5 +18,9 @@ environment:
 forward:
   - 5000:5000
   - 9229:9229
+resources:
+  limits:
+    memory: "2G"
+    cpu: "3.5"
 secrets:
  #- ./.env:/usr/src/app/.env:400

@@ -8,3 +8,8 @@ commits-to-secret.yaml
 build/
 node_modules/
 tmp/
+
+.build
+.push-latest
+.push-tag
+.tag-latest

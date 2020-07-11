@@ -1,4 +1,4 @@
-.PHONY: clean push all mrproper docker-pull
+.PHONY: clean push all mrproper docker-pull install
 
 ISO_DATE_TAG := $(shell date +%Y%m%d)
 
@@ -6,6 +6,9 @@ DEVIMAGE_SLUG := kingdonb/commits-to:dev-
 RUNIMAGE_SLUG := kingdonb/commits-to:
 
 all: .push-tag
+
+install: .build
+	kubectl apply -f k8s.yml
 
 .build:
 	okteto build -t $(DEVIMAGE_SLUG)$(ISO_DATE_TAG) . --target dev \

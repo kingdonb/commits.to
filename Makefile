@@ -1,23 +1,44 @@
-.PHONY: build tag-latest push-tag push-latest push
+.PHONY: clean push all mrproper docker-pull
 
 ISO_DATE_TAG := $(shell date +%Y%m%d)
 
-all: build push
+DEVIMAGE_SLUG := kingdonb/commits-to:dev-
+RUNIMAGE_SLUG := kingdonb/commits-to:
 
-build:
-	docker build -t kingdonb/commits-to:dev-$(ISO_DATE_TAG) . --target dev \
-    && docker build -t kingdonb/commits-to:$(ISO_DATE_TAG) .
+all: .push-tag
 
-tag-latest: build
-	docker tag kingdonb/commits-to:dev-$(ISO_DATE_TAG) kingdonb/commits-to:dev
-	docker tag kingdonb/commits-to:$(ISO_DATE_TAG) kingdonb/commits-to:latest
+.build:
+	okteto build -t $(DEVIMAGE_SLUG)$(ISO_DATE_TAG) . --target dev \
+    && okteto build -t $(RUNIMAGE_SLUG)$(ISO_DATE_TAG) .
+	touch .build
 
-push-tag: build
-	docker push kingdonb/commits-to:dev-$(ISO_DATE_TAG)
-	docker push kingdonb/commits-to:$(ISO_DATE_TAG)
+docker-pull:
+	docker pull $(DEVIMAGE_SLUG)$(ISO_DATE_TAG)
+	docker pull $(RUNIMAGE_SLUG)$(ISO_DATE_TAG)
 
-push-latest: tag-latest
-	docker push kingdonb/commits-to:dev
-	docker push kingdonb/commits-to:latest
+# build:
+# 	docker build -t kingdonb/commits-to:dev-$(ISO_DATE_TAG) . --target dev \
+#     && docker build -t kingdonb/commits-to:$(ISO_DATE_TAG) .
 
-push: push-tag push-latest
+.tag-latest: .build
+	docker tag $(DEVIMAGE_SLUG)$(ISO_DATE_TAG) $(RUNIMAGE_SLUG)dev
+	docker tag $(RUNIMAGE_SLUG)$(ISO_DATE_TAG) $(RUNIMAGE_SLUG)latest
+	touch .tag-latest
+
+.push-tag: .build
+	docker push $(DEVIMAGE_SLUG)$(ISO_DATE_TAG)
+	docker push $(RUNIMAGE_SLUG)$(ISO_DATE_TAG)
+	touch .push-tag
+
+.push-latest: .tag-latest
+	docker push $(RUNIMAGE_SLUG)dev
+	docker push $(RUNIMAGE_SLUG)latest
+	touch .push-latest
+
+clean:
+	rm -f .build
+
+mrproper: clean
+	rm .tag-latest .push-tag .push-latest
+
+push: .push-tag .push-latest

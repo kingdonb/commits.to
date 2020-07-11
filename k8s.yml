@@ -100,5 +100,5 @@ spec:
         - containerPort: 5000
           name: http
         resources:
-          requests:
+          limits:
             cpu: 100m

@@ -24,6 +24,10 @@ metadata:
     app.kubernetes.io/part-of: commits-to
     app.kubernetes.io/version: v1
   name: commits-to
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/ignore: "false"
+    fluxcd.io/tag.commits-to: regex:^master-[a-f0-9]{7}$
 spec:
   replicas: 1
   selector:
@@ -94,7 +98,7 @@ spec:
               name: commits-to-secret
               key: MAILGUN_KEY
         imagePullPolicy: IfNotPresent
-        image: kingdonb/commits-to:20200711
+        image: quay.io/kingdonb/commitsto:master-94ed771
         name: commits-to
         ports:
         - containerPort: 5000

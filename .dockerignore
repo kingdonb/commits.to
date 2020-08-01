@@ -2,4 +2,9 @@ Dockerfile
 draft.toml
 charts/
 .env
+.env.local
 commits-to-secret.yaml
+node_modules/
+build/
+tmp/
+.git/

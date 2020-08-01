@@ -3,3 +3,4 @@ draft.toml
 charts/
 .env
 commits-to-secret.yaml
+node_modules

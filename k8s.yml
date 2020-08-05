@@ -105,4 +105,4 @@ spec:
           name: http
         resources:
           limits:
-            cpu: 100m
+            cpu: 250m

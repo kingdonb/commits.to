@@ -98,7 +98,7 @@ spec:
               name: commits-to-secret
               key: MAILGUN_KEY
         imagePullPolicy: IfNotPresent
-        image: quay.io/kingdonb/commitsto:master-efa99a3
+        image: quay.io/kingdonb/commitsto:master-74e605d
         name: commits-to
         ports:
         - containerPort: 5000

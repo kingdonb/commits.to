@@ -2,8 +2,8 @@
 
 ISO_DATE_TAG := $(shell date +%Y%m%d)
 
-DEVIMAGE_SLUG := kingdonb/commits-to:dev-
-RUNIMAGE_SLUG := kingdonb/commits-to:
+DEVIMAGE_SLUG := registry.cloud.okteto.net/kingdonb/commits-to:dev-
+RUNIMAGE_SLUG := registry.cloud.okteto.net/kingdonb/commits-to:
 
 all: .push-tag
 

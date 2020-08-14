@@ -1,5 +1,5 @@
 name: commits-to
-image: kingdonb/commits-to:dev
+image: registry.cloud.okteto.net/kingdonb/commits-to:dev
 command:
 - bash
 workdir: /usr/src/app

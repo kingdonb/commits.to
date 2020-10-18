@@ -2,13 +2,17 @@
 
 ISO_DATE_TAG := $(shell date +%Y%m%d)
 
-DEVIMAGE_SLUG := registry.cloud.okteto.net/kingdonb/commits-to:dev-
-RUNIMAGE_SLUG := registry.cloud.okteto.net/kingdonb/commits-to:
+DEVIMAGE_SLUG := quay.io/kingdonb/commitsto:dev-
+RUNIMAGE_SLUG := quay.io/kingdonb/commitsto:
+IMAGE := $(RUNIMAGE_SLUG)master-dd2f77a
 
 all: .push-tag
 
 install: .build
 	kubectl apply -f k8s.yml
+
+quay:
+	docker build -t $(IMAGE) . && docker push $(IMAGE)
 
 .build:
 	okteto build -t $(DEVIMAGE_SLUG)$(ISO_DATE_TAG) . --target dev \

@@ -1,4 +1,4 @@
-Commits.to - a.k.a. [The I-Will System](https://github.com/commitsto/commits.to/)
+Commits.to -- a.k.a. [The I-Will System](https://github.com/commitsto/commits.to/)
 ---
 [![CircleCI](https://circleci.com/gh/commitsto/commits.to.svg?style=svg)](https://circleci.com/gh/commitsto/commits.to)
 [![codecov](https://codecov.io/gh/commitsto/commits.to/branch/master/graph/badge.svg)](https://codecov.io/gh/commitsto/commits.to)

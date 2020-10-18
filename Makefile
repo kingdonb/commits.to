@@ -1,10 +1,11 @@
 .PHONY: clean push all mrproper docker-pull install
 
 ISO_DATE_TAG := $(shell date +%Y%m%d)
+IMAGE_TAG := $(shell ./image-tag.sh)
 
 DEVIMAGE_SLUG := quay.io/kingdonb/commitsto:dev-
 RUNIMAGE_SLUG := quay.io/kingdonb/commitsto:
-IMAGE := $(RUNIMAGE_SLUG)master-dd2f77a
+IMAGE := $(RUNIMAGE_SLUG)$(IMAGE_TAG)
 
 all: .push-tag
 
@@ -16,7 +17,7 @@ quay:
 
 .build:
 	okteto build -t $(DEVIMAGE_SLUG)$(ISO_DATE_TAG) . --target dev \
-    && okteto build -t $(RUNIMAGE_SLUG)$(ISO_DATE_TAG) .
+    && okteto build -t $(IMAGE) .
 	touch .build
 
 docker-pull:

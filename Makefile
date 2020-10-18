@@ -3,8 +3,8 @@
 ISO_DATE_TAG := $(shell date +%Y%m%d)
 IMAGE_TAG := $(shell ./image-tag.sh)
 
-DEVIMAGE_SLUG := quay.io/kingdonb/commitsto:dev-
-RUNIMAGE_SLUG := quay.io/kingdonb/commitsto:
+DEVIMAGE_SLUG := okteto.dev/commitsto:dev-
+RUNIMAGE_SLUG := okteto.dev/commitsto:
 IMAGE := $(RUNIMAGE_SLUG)$(IMAGE_TAG)
 
 all: .push-tag

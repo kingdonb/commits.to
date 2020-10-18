@@ -1,4 +1,4 @@
-FROM node:10.12 as base
+FROM node:10.22 as base
 ENV PORT 5000
 EXPOSE 5000
 
